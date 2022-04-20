@@ -5,7 +5,7 @@ RSpec.describe MenusController, :type => :controller do
     context 'with params[:letter]' do 
       it "populates an array menus starting with the letter" do
         nasi_goreng_ayam = create(:menu, name: "Nasi Goreng Ayam")
-        soto_ayam = create(:menu, name: "Soto Ayam")
+        ketoprak = create(:menu, name: "Ketoprak")
         get :index, params: { letter: 'N'}
         expect(assigns(:menus)).to match_array([nasi_goreng_ayam])
       end
@@ -19,9 +19,9 @@ RSpec.describe MenusController, :type => :controller do
     context 'without params [:letter]' do
       it "populates an array of all menus" do
         nasi_goreng_ayam = create(:menu, name: "Nasi Goreng Ayam")
-        soto_ayam = create(:menu, name: "Soto Ayam")
+        ketoprak = create(:menu, name: "Ketoprak")
         get :index
-        expect(assigns(:menus)).to match_array([nasi_goreng_ayam, soto_ayam])
+        expect(assigns(:menus)).to match_array([nasi_goreng_ayam, ketoprak])
       end
 
       it "renders the :index template" do

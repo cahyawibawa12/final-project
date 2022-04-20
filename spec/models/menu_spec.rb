@@ -64,7 +64,7 @@ RSpec.describe Menu, type: :model do
     context 'with matching letter' do
       it "should return a sorted array of results that match" do
         menu1 = FactoryBot.create(:menu, name: 'Nasi Goreng Ayam')
-        menu2 = FactoryBot.create(:menu, name: 'Soto Ayam')
+        menu2 = FactoryBot.create(:menu, name: 'Ketoprak')
         menu3 = FactoryBot.create(:menu, name: 'Nasi Goreng Telor')
   
         expect(Menu.by_letter("N")).to eq([menu1, menu3])
