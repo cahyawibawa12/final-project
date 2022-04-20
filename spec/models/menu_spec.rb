@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Menu, type: :model do
-
+  let(:category) do
+    return FactoryBot.create(:category)
+  end
+  subject(:menu) do
+    return FactoryBot.create(:menu, category: category)
+  end
+  
   it "has a valid factory" do
     expect(FactoryBot.build(:menu)).to be_valid
   end
