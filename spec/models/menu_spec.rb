@@ -13,7 +13,13 @@ RSpec.describe Menu, type: :model do
   end
   
   it "is valid with a name and a description" do
-   expect(FactoryBot.build(:menu)).to be_valid
+   expect(menu).to be_valid
+  end
+
+  it 'is invalid without a category' do
+    menu.category = nil
+    menu.valid?
+    expect(menu.errors[:category]).to include('must exist')
   end
 
   it "is invalid without name" do
@@ -63,6 +69,16 @@ RSpec.describe Menu, type: :model do
   
         expect(Menu.by_letter("N")).to eq([menu1, menu3])
       end
+    end
+  end
+  
+   describe 'self#by_category' do
+    it 'should return menus that has the category' do
+      new_category = FactoryBot.build(:category, name: 'test_test')
+      menu2 = FactoryBot.create(:menu, name: 'Nasi Goreng Ayam', category: new_category)
+
+      expect(Menu.by_category(category.name)).to eq([menu])
+      expect(Menu.by_category(new_category.name)).to eq([menu2])
     end
   end
 end

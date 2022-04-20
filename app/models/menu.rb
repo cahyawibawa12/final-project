@@ -8,4 +8,9 @@ class Menu < ApplicationRecord
   def self.by_letter(letter)
     where("name LIKE ?", "#{letter}%").order(:name)
   end
+
+  def self.by_category(category)
+      left_outer_joins(:category).where(categories: {name: "#{category}"})
+  end
 end
+
