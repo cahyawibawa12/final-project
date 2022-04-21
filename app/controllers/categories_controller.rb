@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     if params[:letter].nil?
       @categories = Category.all
     else
-      @mcategories = Category.by_letter(params[:letter])
+      @categories = Category.by_letter(params[:letter])
     end
     # @categories = params[:letter].nil? ? Category.all : Category.by_letter(params[:letter])
   end
@@ -46,6 +46,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    # @category = Category.find_by(id: params[:id])
     @category.destroy
     redirect_to category_path(@category)
   end

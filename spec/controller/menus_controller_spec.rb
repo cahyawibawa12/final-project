@@ -107,7 +107,7 @@ RSpec.describe MenusController, :type => :controller do
 
       it "redirects to the category" do 
         patch :update, params: { id: @menu, menu: attributes_for(:menu) }
-        expect(response).to redirect_to menus_path(@menu)
+        expect(response).to redirect_to menu_url(@menu)
       end
     end
 
