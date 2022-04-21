@@ -13,4 +13,3 @@ class Menu < ApplicationRecord
     left_outer_joins(:category).where(categories: {name: "#{category}"})
   end
 end
-
