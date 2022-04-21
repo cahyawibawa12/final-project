@@ -18,4 +18,16 @@ RSpec.describe Category, type: :model do
     category.valid?
     expect(category.errors[:name]).to include("can't be blank")
   end
+
+  describe 'self#by_letter' do
+    context 'with matching letter' do
+      it "should return a sorted array of results that match" do
+        category1 = FactoryBot.create(:category, name: 'Indonesian Tradisional')        
+        category2 = FactoryBot.create(:category, name: 'Main Dish')
+        category3 = FactoryBot.create(:category, name: 'Indonesian Modern')
+  
+        expect(Category.by_letter("I")).to eq([category3, category1])
+      end
+    end
+  end
 end

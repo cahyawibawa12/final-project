@@ -130,7 +130,7 @@ RSpec.describe MenusController, :type => :controller do
       @menu = create(:menu)
     end
 
-    it "deletes the food from the database" do
+    it "deletes the menu from the database" do
       expect{
         delete :destroy, params: { id: @menu}
       }.to change(Menu, :count).by(-1)

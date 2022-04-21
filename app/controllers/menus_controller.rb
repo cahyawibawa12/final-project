@@ -36,4 +36,8 @@ class MenusController < ApplicationController
     @menu.destroy
     redirect_to menus_path
   end
+
+  def create
+    
+  end
 end

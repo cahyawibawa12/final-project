@@ -19,9 +19,9 @@ RSpec.describe CategoriesController, :type => :controller do
     context 'without params [:letter]' do
       it "populates an array of all categories" do
         main_dish = create(:category, name: "Main Dish")
-        desert = build(:category, name: "Desert")
+        desert = create(:category, name: "Desert")
         get :index
-        expect(assigns(:menus)).to match_array([main_dish, desert])
+        expect(assigns(:categories)).to match_array([main_dish, desert])
       end
 
       it "renders the :index template" do
@@ -89,20 +89,20 @@ RSpec.describe CategoriesController, :type => :controller do
       end
 
       it "redirects to the category" do 
-        patch :update, params: { id: @menu, menu: attributes_for(:menu) }
-        expect(response).to redirect_to menus_path(@menu)
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(response).to redirect_to category_path(@category)
       end
     end
 
     context 'with invalid attributes' do
-      it 'does not save the updated menu in the database' do
-        patch :update, params: { id: @menu, menu: attributes_for(:invalid_menu, name: 'Nasi Gorang Ayam', price: "Test") }
-        expect(@menu.name).not_to eq('Nasi Gorang Ayam')
+      it 'does not save the updated category in the database' do
+        patch :update, params: { id: @category, category: attributes_for(:invalid_category, category: 'Main Dish') }
+        expect(@category.name).not_to eq('Main Dish')
       end
 
       it 're-renders the edit template' do
-        patch :update, params: { id: @menu, menu: attributes_for(:invalid_menu)}
-        expect(assigns(:menu)).to eq @menu
+        patch :update, params: { id: @category, category: attributes_for(:invalid_category)}
+        expect(assigns(:category)).to eq @category
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -110,18 +110,18 @@ RSpec.describe CategoriesController, :type => :controller do
 
   describe 'DELETE #destroy' do
     before :each do
-      @menu = create(:menu)
+      @category = create(:category)
     end
 
-    it "deletes the food from the database" do
+    it "deletes the category from the database" do
       expect{
-        delete :destroy, params: { id: @menu}
-      }.to change(Menu, :count).by(-1)
+        delete :destroy, params: { id: @category}
+      }.to change(Category, :count).by(-1)
     end
 
     it "redirects to menus#index" do
-      delete :destroy, params: { id: @menu }
-      expect(response).to redirect_to menus_url
+      delete :destroy, params: { id: @category }
+      expect(response).to redirect_to category_url
     end
   end
 end

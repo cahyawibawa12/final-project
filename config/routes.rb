@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'categories/show'
-  get 'categories/new'
-  get 'categories/index'
-  get 'categories/edit'
-  get 'categories/update'
-  get 'categories/create'
-  get 'categories/destroy'
+  # get 'categories/show'
+  # get 'categories/new'
+  # get 'categories/index'
+  # get 'categories/edit'
+  # get 'categories/update'
+  # get 'categories/create'
+  # get 'categories/destroy'
   # get 'menus/index'
   # get 'menus/new'
   # get 'menus/edit'
@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :menus
+  resources :categories
 end
