@@ -1,44 +1,27 @@
 require 'rails_helper'
 
-RSpec.describe MenusController, :type => :controller do
+RSpec.describe CategoriesController, :type => :controller do
   describe 'GET #index' do
     context 'with params[:letter]' do 
-      it "populates an array menus starting with the letter" do
-        nasi_uduk = create(:menu, name: "Nasi Uduk")
-        ketoprak = build(:menu, name: "Ketoprak")
-        get :index, params: { letter: 'N'}
-        expect(assigns(:menus)).to match_array([nasi_uduk])
+      it "populates an array category starting with the letter" do
+        main_dish = create(:category, name: "Main Dish")
+        desert = build(:category, name: "Desert")
+        get :index, params: { letter: 'M'}
+        expect(assigns(:categories)).to match_array([main_dish])
       end
 
       it "renders the :index template" do
-        get :index, params: { letter: 'N'}
+        get :index, params: { letter: 'M'}
         expect(response).to render_template :index
       end
     end
 
     context 'without params [:letter]' do
-      it "populates an array of all menus" do
-        cartegory = Category.create(
-          name: "dish"
-        )
-        
-        menu1 = Menu.create(
-          name: "Nasi Goreng Ayam",
-          description: "test",
-          price: 10000.0,
-          category_id: 1
-        )
-
-         menu2 = Menu.create(
-          name: "Soto Ayam",
-          description: "test",
-          price: 10000.0,
-          category_id: 1
-        )
-        # nasi_goreng_ayam = create(:menu, name: "Nasi Goreng Ayam")
-        # tipat_cantok = create(:menu, name: "Tipat Cantok")
+      it "populates an array of all categories" do
+        main_dish = create(:category, name: "Main Dish")
+        desert = build(:category, name: "Desert")
         get :index
-        expect(assigns(:menus)).to match_array([menu1, menu2])
+        expect(assigns(:menus)).to match_array([main_dish, desert])
       end
 
       it "renders the :index template" do
@@ -49,23 +32,23 @@ RSpec.describe MenusController, :type => :controller do
   end
 
   describe "GET #show" do
-    it "assigns the requested menu to @menu" do
-      menu = create(:menu)
-      get :show, params: { id: menu } 
-      expect(assigns(:menu)).to eq menu
+    it "assigns the requested category to @category" do
+      category = create(:category)
+      get :show, params: { id: category } 
+      expect(assigns(:category)).to eq category
     end
 
     it "renders the :show template" do
-      menu = create(:menu)
-      get :show, params: { id: menu }
+      category = create(:category)
+      get :show, params: { id: category }
       expect(response).to render_template :show
     end
   end
 
   describe 'GET #new' do
-    it "assigns a new Menu to @menu" do
+    it "assigns a new Category to @category" do
       get :new
-      expect(assigns(:menu)).to be_a_new(Menu)
+      expect(assigns(:category)).to be_a_new(Category)
     end
 
     it "renders the :new template" do
@@ -75,34 +58,34 @@ RSpec.describe MenusController, :type => :controller do
   end
 
   describe 'GET #edit' do
-    it "assigns the requested menu to @menu" do
-      menu = create(:menu)
-      get :edit, params: { id: menu }
-      expect(assigns(:menu)).to eq menu
+    it "assigns the requested category to @category" do
+      category = create(:category)
+      get :edit, params: { id: category }
+      expect(assigns(:category)).to eq category
     end
 
     it "renders the :edit template" do
-      menu = create(:menu)
-      get :edit, params: { id: menu }
+      category = create(:category)
+      get :edit, params: { id: category }
       expect(response).to render_template :edit
     end
   end
 
   describe 'PACTH #update' do
     before :each do 
-      @menu = create(:menu)
+      @category = create(:category)
     end
 
     context "with valid attributes" do
-      it "locates the requested @menu" do
-        patch :update, params: { id: @menu, menu: attributes_for(:menu) }
-        expect(assigns(:menu)).to eq @menu
+      it "locates the requested @category" do
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(assigns(:category)).to eq @category
       end
 
-      it "changes @menu's attributes" do
-        patch :update, params: { id: @menu, menu: attributes_for(:menu, name: 'Nasi Goreng Ayam') }
-        @menu.reload
-        expect(@menu.name).to eq('Nasi Goreng Ayam')
+      it "changes @category's attributes" do
+        patch :update, params: { id: @category, category: attributes_for(:category, name: 'Main Dish') }
+        @category.reload
+        expect(@category.name).to eq('Main Dish')
       end
 
       it "redirects to the category" do 

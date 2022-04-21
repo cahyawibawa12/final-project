@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :menu do
-    name { Faker::Food.dish }
+    # name { Faker::Food.dish }
+    sequence(:name) { |n| "#{Faker::String.random(length: 10)} #{n}" }
     description { Faker::String.random(length: 150) }
     price { 10000.0 }
     association :category, factory: :category

@@ -7,7 +7,7 @@ RSpec.describe Menu, type: :model do
   subject(:menu) do
     return FactoryBot.create(:menu, category: category)
   end
-  
+
   it "has a valid factory" do
     expect(FactoryBot.build(:menu)).to be_valid
   end
@@ -60,12 +60,40 @@ RSpec.describe Menu, type: :model do
     expect(menu.errors[:description]).to include("can't be blank")
   end
 
+   it 'is invalid when a description bigger than 150 character' do
+    menu = FactoryBot.build(:menu, description: Faker::String.random(length: 160))
+    menu.valid?
+
+    expect(menu.errors[:description]).to include("is too long (maximum is 150 characters)")
+  end
+
   describe 'self#by_letter' do
     context 'with matching letter' do
       it "should return a sorted array of results that match" do
-        menu1 = FactoryBot.create(:menu, name: 'Nasi Goreng Ayam')
-        menu2 = FactoryBot.create(:menu, name: 'Ketoprak')
-        menu3 = FactoryBot.create(:menu, name: 'Nasi Goreng Telor')
+        category = Category.create(
+          name: "dish"
+        )
+        
+        menu1 = Menu.create(
+          name: "Nasi Ayam",
+          description: "test",
+          price: 10000.0,
+          category_id: 1
+        )
+         menu2 = Menu.create(
+          name: "Ayam Goreng",
+          description: "test",
+          price: 10000.0,
+          category_id: 1
+        )
+         menu3 = Menu.create(
+          name: "Nasi Sambel",
+          description: "test",
+          price: 10000.0,
+          category_id: 1
+        )
+        # menu2 = FactoryBot.create(:menu, name: 'Mie Pangsit')
+        # menu3 = FactoryBot.create(:menu, name: 'Nasi Sambel')
   
         expect(Menu.by_letter("N")).to eq([menu1, menu3])
       end

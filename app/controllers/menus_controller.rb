@@ -1,6 +1,11 @@
 class MenusController < ApplicationController
   def index
-    @menus = params[:letter].nil? ? Menu.all : Menu.by_letter(params[:letter])
+    if params[:letter].nil?
+      @menus = Menu.all
+    else
+      @menus = Menu.by_letter(params[:letter])
+    end
+    # @menus = params[:letter].nil? ? Menu.all : Menu.by_letter(params[:letter])
   end
 
   def new
