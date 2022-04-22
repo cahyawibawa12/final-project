@@ -31,13 +31,17 @@ class Order < ApplicationRecord
     end
   end
 
-    def sum_total
-      self.order_details.each do |order_detail|
-        self.total = self.total + order_detail.sub_total
-      end
+  def sum_total
+    self.order_details.each do |order_detail|
+     self.total = self.total + order_detail.sub_total
     end
+  end
 
-  # def update_status_to_paid
-  #   self.update(status: "PAID")
-  # end
+  def set_status_paid
+    self.update(status: "PAID")
+  end
+
+  def set_status_canceled
+    self.update(status: "CANCELED")
+  end
 end
