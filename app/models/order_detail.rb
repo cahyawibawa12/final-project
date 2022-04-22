@@ -5,4 +5,8 @@ class OrderDetail < ApplicationRecord
   validates :price, presence: true
   validates :qty, presence: true
   validates :sub_total, presence: true
+
+  def sum_subtotal
+    self.sub_total = self.price * self.qty
+  end
 end
