@@ -14,12 +14,14 @@ class Order < ApplicationRecord
       return
     end
     menus.each do |menu|
+      puts "dasd"
+      puts menu[:id]
       if Menu.find_by_id(menu[:id]).present?
-        self.order_details << OrderDetail.new(menu_id: menu[:id], qty: menu[:qty], price: Menu.where(id: menu[:id])[0].price)
+        self.order_details << OrderDetail.new(menu_id: menu[:id], qty: menu[:qty], price: Menu.find_by(id: menu[:id]).price)
       else
         self.errors.add(:menu, "with id: #{menu[:id]} is not exits")
       end
-      self.errors.add(:menu, "quantity must more than 0") if menu[:qty].to_i < 1
+      self.errors.add(:order, "quantity must more than 0") if menu[:qty].to_i < 1
     end
   end
 
@@ -34,4 +36,8 @@ class Order < ApplicationRecord
         self.total = self.total + order_detail.sub_total
       end
     end
+
+  # def update_status_to_paid
+  #   self.update(status: "PAID")
+  # end
 end

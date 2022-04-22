@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :menus
+      resources :categories
+      resources :orders
+    end
+  end
   # get 'orders/show'
   # get 'orders/index'
   # get 'orders/new'

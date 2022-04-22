@@ -16,4 +16,8 @@ class Menu < ApplicationRecord
   def self.by_category(category)
     left_outer_joins(:category).where(categories: {name: "#{category}"})
   end
+
+  def set_category
+    @category = Category.all.collect { |category| [ category.name, category.id ] }
+  end
 end
