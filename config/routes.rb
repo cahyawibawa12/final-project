@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # get 'orders/show'
+  # get 'orders/index'
+  # get 'orders/new'
+  # get 'orders/edit'
   # get 'categories/show'
   # get 'categories/new'
   # get 'categories/index'
@@ -18,4 +22,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :menus
   resources :categories
+  resources :orders
 end
