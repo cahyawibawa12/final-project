@@ -7,7 +7,6 @@ class MenusController < ApplicationController
     else
       @menus = Menu.by_letter(params[:letter])
     end
-    # @menus = params[:letter].nil? ? Menu.all : Menu.by_letter(params[:letter])
   end
 
   def new
@@ -18,7 +17,6 @@ class MenusController < ApplicationController
   end
 
   def update
-    # @menu = Menu.find_by(set_menu)
     
     respond_to do |format|
       if @menu.update(menu_params)
@@ -29,14 +27,6 @@ class MenusController < ApplicationController
         format.json { render json: @menu.errors, status: :unprocessable_entity }
       end
     end
-    # @menu = Menu.find_by(id: params[:id])
-
-    # @menu.update(params.require(:menu).permit(:name))
-    # if @menu.save
-    #   redirect_to menus_path(@menu)
-    # else
-    #   render :edit, status: 422
-    # end
   end
 
   def show
@@ -67,7 +57,6 @@ class MenusController < ApplicationController
       params.require(:menu).permit(:name, :description, :price, :category_id)
   end
 
-    # Use callbacks to share common setup or constraints between actions.
   def set_menu
     @menu = Menu.find(params[:id])
   end

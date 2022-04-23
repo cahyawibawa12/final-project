@@ -1,5 +1,5 @@
-class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+before_action :set_order, only: %i[ show edit update destroy paid canceled]
+  
   def show
     @order_detail = @order.order_details
   end
@@ -17,17 +17,24 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # @order = Order.new(order_params)
+    @order = Order.new(order_params)
+    @order.create_menu(menu_order_params[:menus])
+    @order.sum_subtotal
+    @order.sum_total
+    @order.save
+  end
 
-    # respond_to do |format|
-    #   if @order.save
-    #     format.html { redirect_to order_url(@order), notice: "menu was successfully created." }
-    #     format.json { render :index, status: :created, location: @order }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @order.errors, status: :unprocessable_entity }
-    #   end
-    # end
+  def destroy
+    @order.order_details.destroy_all
+    @order.destroy
+  end
+
+  def paid
+    @order.set_status_paid
+  end
+
+  def canceled
+    @order.set_status_canceled
   end
   
   private
@@ -42,5 +49,13 @@ class OrdersController < ApplicationController
 
   def menu_order_params
     params.require(:order).permit(menus: [:id, :qty])
+  end   
+
+  def set_status_paid
+    self.update(status: "PAID")
+  end
+
+  def set_status_canceled
+    self.update(status: "CANCELED")
   end
 end

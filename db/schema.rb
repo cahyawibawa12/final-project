@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_100039) do
+ActiveRecord::Schema.define(version: 2022_04_23_000950) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2022_04_22_100039) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "NEW"
-    t.string "order_date"
   end
 
   add_foreign_key "menus", "categories"
