@@ -29,8 +29,8 @@ class Api::V1::MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    redirect_to menus_path
-    render json: @menu, status: 200
+    redirect_to menus_path(@menu)
+    render json: @menu
   end
 
   def create

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :menus
       resources :categories
       resources :orders
-      resources :reports
+      get '/reports/index', to: 'reports#index'
       patch '/orders/:id/cancel', to: 'orders#canceled'
       patch '/orders/:id/paid', to: 'orders#paid'
     end

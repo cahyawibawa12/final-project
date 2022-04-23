@@ -1,25 +1,23 @@
-# Rails on Replit
+<h1>Final Project</h1>
 
-This is a template to get you started with Rails on Replit. It's ready to go so you can just hit run and start coding!
+<h2>Kasus</h2>
+1. Membuat menu makanan yang memiliki nama, harga dan deskripsi yang dibatasi dengan 150 kata <br>
+2. Membuat update pada Menu <br>
+3. Membuat list menu <br>
+4. Remove Menu item <br>
+5. Menyimpan data email customer, membuat banyak pesanan dalam 1 order, mengubah data harga <br>
+6. Status awal pesanan dan mengubah status <br>
+7. Report pesanan <br>
 
-This template was generated using `rails new` (after you install the `rails` gem from the packager sidebar) so you can always do that if you prefer to set it up from scratch. The only had two make config changes we had to make to run it on Replit:
+<h2>ERD</h2>
+<img src="ERD.jpg" width=1000>
 
-- bind the app on `0.0.0.0` instead of `localhost` (see `.replit`)
-- allow `*.repl.co` hosts (see `config/environments/development.rb`)
-- allow the app to be iframed on `replit.com` (see `config/application.rb`)
+<h2>API Documentation</h2>
+Lakukan "bundle install" dahulu <br> <br>
 
-## Running the app
+Untuk Test server "rails server" <br><br>
+Untuk test spec "rspec -fd"
 
-Simple hit run! You can edit the run command from the `.replit` file.
 
-## Running commands
-
-Start every command with `bundle exec` so that it runs in the context of the installed gems environment. The console pane will give you output from the server but you can run arbitrary command from the shell without stopping the server.
-
-## Database
-
-SQLite would work in development but we don't recommend running it in production. Instead look into using the built-in [Replit database](http://docs.replit.com/misc/database). Otherwise you are welcome to connect databases from your favorite provider. 
-
-## Help
-
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Alternatively you can [ask in the community](https://replit.com/talk/ask). Feel free to report bugs [here](https://replit.com/bugs) and give us feedback [here](https://Replit/feedback).
+Introduction Running API 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/18852795-6387eef3-7706-42d0-813a-0c98005b2325?action=collection%2Ffork&collection-url=entityId%3D18852795-6387eef3-7706-42d0-813a-0c98005b2325%26entityType%3Dcollection%26workspaceId%3D20162af9-370c-4d0f-992b-6a5e48d12d08)

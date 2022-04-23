@@ -13,8 +13,7 @@ class Order < ApplicationRecord
       return
     end
     menus.each do |menu|
-      puts "dasd"
-      puts menu[:id]
+      # puts menu[:id]
       if Menu.find_by_id(menu[:id]).present?
         self.order_details << OrderDetail.new(menu_id: menu[:id], qty: menu[:qty], price: Menu.find_by(id: menu[:id]).price)
       else
